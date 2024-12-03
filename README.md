@@ -1,36 +1,52 @@
-# Official Kali Linux Docker
+# Configurando a Conexão Bluetooth do ESP32
 
-This Kali Linux Docker image provides a minimal base install of the latest
-version of the Kali Linux Rolling Distribution. There are no tools added
-to this image, so you will need to install them yourself. 
+Este guia detalha como configurar o ESP32 para se conectar a um controle PS4 via Bluetooth. O processo envolve adquirir o endereço MAC do ESP32, emparelhar o controle e gerenciar conexões. Utilizaremos o Arduino IDE para todas as etapas.
 
-For details about Kali Linux metapackages, check
-<https://www.kali.org/blog/kali-linux-metapackages/>.
+---
 
-# Weekly updates
+## **Pré-requisitos**
+- Arduino IDE instalado.  
+- Drivers necessários para o ESP32.  
+- Controle PS4.  
 
-Docker images are updated weekly and pushed to the Docker Hub at
-<https://hub.docker.com/u/kalilinux>.
+---
 
-You can run those images with either Docker or Podman, at your convenience:
+## **Passo 1: Adquirindo o MAC do ESP32**
 
-```
-# Podman
-podman run --rm -it kali-rolling
-# Docker
-docker run --rm -it kalilinux/kali-rolling
-```
+1. Carregue o código do arquivo `src/ESP32DeviceMAC.ino` no ESP32.  
+2. Abra o Monitor Serial na Arduino IDE.  
+3. Pressione o botão de reset na placa ESP32.  
 
-For more documentation, refer to:
-* <https://www.kali.org/docs/containers/using-kali-podman-images/>
-* <https://www.kali.org/docs/containers/using-kali-docker-images/>
+### **Exemplo de saída no Monitor Serial**  
+```  
+ESP Bluetooth MAC address is - XX:XX:XX:XX:XX:XX   (<- SEU MAC)  
+```  
+4. Guarde o endereço MAC exibido, pois será usado para emparelhar o controle PS4.  
 
-# How to build those images
+---
 
-The easiest is probably to build via the GitLab infrastructure. All it takes is
-to fork the GitLab repository, and let the CI/CD build it for you. Images are
-rebuilt every time a commit is pushed, and can be found in the GitLab Registry
-that is associated with your fork.
+## **Passo 2: Emparelhando o Controle PS4 com o ESP32**  
 
-For those who prefer to build locally, there is the script `build.sh`.  A good
-starting point is `./build.sh -h`.
+1. Instale o programa de emparelhamento localizado na pasta `output/sixaxispairtoolsetup-0.3.1.exe`.  
+2. Execute o programa e conecte seu controle PS4 ao computador.  
+3. Insira o endereço MAC do ESP32 no campo indicado e clique em "Pair" para realizar o emparelhamento.  
+
+---
+
+## **Passo 3: Limpando Conexões Existentes**  
+
+Caso o controle não seja reconhecido pelo ESP32, limpe as conexões antigas:  
+
+1. Carregue o arquivo `src/ClearConnections.ino` no ESP32.  
+2. Execute o código para limpar as conexões armazenadas.  
+
+---
+
+## **Passo 4: Conectando o Controle PS4 ao ESP32**  
+
+1. Carregue o programa `src/PS4ControllerBluetooth.ino` no ESP32.  
+2. Abra o Monitor Serial e verifique os logs para confirmar o funcionamento do controle.  
+
+---
+
+Com essas etapas, seu controle PS4 estará configurado e funcionando com o ESP32 via Bluetooth.
