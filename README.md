@@ -13,7 +13,7 @@ Este guia detalha como configurar o ESP32 para se conectar a um controle PS4 via
 
 ## **Passo 1: Adquirindo o MAC do ESP32**
 
-1. Carregue o código do arquivo `src/ESP32DeviceMAC.ino` no ESP32.  
+1. Carregue o código do arquivo `src/ESP32DeviceMAC/` no ESP32.  
 2. Abra o Monitor Serial na Arduino IDE.  
 3. Pressione o botão de reset na placa ESP32.  
 
@@ -37,14 +37,14 @@ ESP Bluetooth MAC address is - XX:XX:XX:XX:XX:XX   (<- SEU MAC)
 
 Caso o controle não seja reconhecido pelo ESP32, limpe as conexões antigas:  
 
-1. Carregue o arquivo `src/ClearConnections.ino` no ESP32.  
+1. Carregue o arquivo `src/ClearConnections/` no ESP32.  
 2. Execute o código para limpar as conexões armazenadas.  
 
 ---
 
 ## **Passo 4: Conectando o Controle PS4 ao ESP32**  
 
-1. Carregue o programa `src/PS4ControllerBluetooth.ino` no ESP32.  
+1. Carregue o programa `src/PS4ControllerBluetooth/` no ESP32.  
 2. Abra o Monitor Serial e verifique os logs para confirmar o funcionamento do controle.  
 
 ---
