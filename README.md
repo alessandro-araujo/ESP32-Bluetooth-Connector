@@ -11,6 +11,11 @@ Este guia detalha como configurar o ESP32 para se conectar a um controle PS4 via
 
 ---
 
+OBS: *Drivers utilizados para o projeto:* https://github.com/espressif/esp-idf
+Instale a lib em preferencias: https://espressif.github.io/arduino-esp32/package_esp32_index.json
+Pode utilizar as placa ESP32 Wrover Module/ESP32 Dev Module/ESP32vn IoT Uno (placas testadas no projeto)
+Caso, apresente erros de ou precise alterar a opção PSRAM ou Partition Scheme, utilize ESP32 Dev Module.
+
 ## **Passo 1: Adquirindo o MAC do ESP32**
 
 1. Carregue o código do arquivo `src/ESP32DeviceMAC/` no ESP32.  
